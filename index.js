@@ -43,7 +43,7 @@ stepHandler.on("contact", (ctx) => {
   ctx.wizard.state.data.user = ctx.message.contact;
   ctx.wizard.state.data.sharedContact = true;
   ctx.reply(
-    "Kattakon rahmat! Endi tanlovimizda bir shartni tanlang.\n\nA. Hech qanday vazifalarsiz (Random orqali tanlanadi)\n\nB. Aytilgan vazifani bajarish orqali. (Bajarilishiga qarab g'olib aniqlanadi)",
+    "Kattakon rahmat! Endi tanlovimizda bir shartni tanlang.\n\nA. Hech qanday vazifalarsiz kitob yutib oling.  (Random orqali g’olib aniqlanadi)\n\nB. Aytilgan vazifani bajarish orqali kitob sohibiga aylaning. (Vazifani bajarilishiga qarab g’olib aniqlanadi)",
     Markup.inlineKeyboard([
       Markup.callbackButton("A", "a"),
       Markup.callbackButton("B", "b"),
@@ -90,10 +90,10 @@ stepHandler.on("media_group", async (ctx) => {
     }
   }
   ctx.replyWithHTML(
-    "🥳 Tanlovda ro'yxatdan o'tdingiz, tanlov natijalarini ___ kuni ______ kanalida bilib olasiz 👋",
+    "🥳 Tanlovda ro'yxatdan o'tdingiz, tanlov natijalarini 19-mart kuni yuqorida siz ulashgan postda sanalgan barcha kanallarda bilib olasiz 👋",
   );
   if (ctx.wizard.state.data.choice === "a") {
-    ctx.telegram.sendMediaGroup(-947236805, [
+    ctx.telegram.sendMediaGroup(-1001568913880, [
       ...ctx.wizard.state.data.media.map((med, i) => {
         return i === 0
           ? {
@@ -108,7 +108,7 @@ stepHandler.on("media_group", async (ctx) => {
       }),
     ]);
   } else {
-    ctx.telegram.sendMediaGroup(-673917046, [
+    ctx.telegram.sendMediaGroup(-1001886724882, [
       ...ctx.wizard.state.data.media.map((med, i) => {
         return i === 0
           ? {
