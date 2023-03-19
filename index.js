@@ -84,8 +84,8 @@ stepHandler.on("media_group", async (ctx) => {
     for (const message of ctx.mediaGroup) {
       ctx.wizard.state.data.media.push(
         message.photo
-          ? { type: "photo", id: message?.photo[0]?.file_id }
-          : { type: "video", id: message?.video?.file_id },
+          ? { type: "photo", id: message.photo[0].file_id }
+          : { type: "video", id: message.video.file_id },
       );
     }
   }
