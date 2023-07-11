@@ -66,7 +66,15 @@ stepHandler.on("media_group", async (ctx) => {
         ? {
             media: med.id,
             type: med.type,
-            caption: `${ctx.wizard.state.data.user.first_name} ${ctx.wizard.state.data.user.last_name}\n${ctx.wizard.state.data.user.phone_number}`,
+            caption: `${
+              ctx.wizard.state.data.user?.first_name
+                ? ctx.wizard.state.data.user?.first_name
+                : ctx.wizard.state.data.user?.phone_number
+            } ${
+              ctx.wizard.state.data.user.last_name
+                ? ctx.wizard.state.data.user.last_name
+                : ""
+            }\n${ctx.wizard.state.data.user.phone_number}`,
           }
         : {
             media: med.id,
@@ -84,7 +92,7 @@ const superWizard = new WizardScene(
   "super-wizard",
   (ctx) => {
     ctx.reply(
-      `Assalamu alaykum ${ctx.from.first_name} ${ctx.from.last_name}! Tanlovga xush kelibsiz! Tanlovimiz juda ham oddiy, aytilgan shartni bajaring va qimmatbaho sovg'alarga ega bo'ling! 🤩`,
+      `Assalamu alaykum! Tanlovga xush kelibsiz! Tanlovimiz juda ham oddiy, aytilgan shartni bajaring va qimmatbaho sovg'alarga ega bo'ling! 🤩`,
     );
     ctx.reply(
       "Tayyormisiz? 🤔",
@@ -110,14 +118,17 @@ const superWizard = new WizardScene(
     const sheet = doc.sheetsByIndex[0];
     await sheet.addRow({
       id: ctx.wizard.state.data.user.user_id,
-      "First Name": ctx.wizard.state.data.user.first_name,
-      "Last Name": ctx.wizard.state.data.user.last_name,
+      "First Name": ctx.wizard.state.data.user.first_name
+        ? ctx.wizard.state.data.user.first_name
+        : "",
+      "Last Name": ctx.wizard.state.data.user.last_name
+        ? ctx.wizard.state.data.user.last_name
+        : "",
       "Phone Number": ctx.wizard.state.data.user.phone_number,
-      Choice: ctx.wizard.state.data.choice,
       Summary: ctx.message.text,
     });
     ctx.replyWithHTML(
-      "🥳 Tanlovga ro'yxatga olindingiz!\nTanlov natijalarini 20-Iyul sanasida ma'lum qilinadi.\nBizni kuzatib boring: @muallimsaid_blog",
+      "🥳 Tanlovga ro'yxatga olindingiz!\nTanlov natijalarini 25-Iyul sanasida ma'lum qilinadi.\nBizni kuzatib boring: @muallimsaid_blog",
     );
     return ctx.scene.leave();
   },
