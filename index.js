@@ -67,7 +67,7 @@ stepHandler.on("media_group", async (ctx) => {
             media: med.id,
             type: med.type,
             caption: `${
-              ctx.wizard.state.data.user?.first_name
+              ctx.wizard.state.data.user.first_name
                 ? ctx.wizard.state.data.user?.first_name
                 : ctx.wizard.state.data.user?.phone_number
             } ${
